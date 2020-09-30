@@ -8,7 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <style>
 div.container-fluid {
   background: #54B689;
@@ -70,7 +70,19 @@ body{
         Welcome to my personal website!</p>
 <hr>
 
-<a href="https://www.linkedin.com/in/isamiri-ortiz/">LinkedIn</a>
+<div id="hide">
+  <button class="btn btn-primary" v-on:click="isHidden = !isHidden">Ver Redes Sociales</button>
+  <br><a v-if="!isHidden" href="https://www.linkedin.com/in/isamiri-ortiz/">LinkedIn</a>
+</div>
+<script>
+  var app = new Vue({
+    el: '#hide',
+    data: {
+      isHidden: false
+    }
+  })
+</script>
+
 <hr>
 <p>Please leave your email if you wish to receive notifications.</p><br>
 
@@ -81,3 +93,27 @@ body{
 </div>
 
 <br>
+
+<input type="checkbox" id="notif" value="notif" v-model="checkedNames">
+<label for="notif">I wish to receive notifications</label>
+
+<h3> Activities </h3>
+<ul id="Activities">
+    <li v-for="item in items">
+      {{ item.message }}
+    </li>
+</ul>
+
+
+<script>
+  var example1 = new Vue({
+    el: '#Activities',
+    data: {
+      items: [
+        { message: 'Tec de Monterrey\'s volleybal representative team' },
+        { message: 'International Experience' },
+        { message: 'International Degree Program Student Association'},
+        { message: 'Volunteering Experience '}
+      ]
+    }
+  }) </script>
